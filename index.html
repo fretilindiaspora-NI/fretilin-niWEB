@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRETILIN Irlanda do Norte</title>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+<style>
+    :root { --red: #ce1126; --yellow: #fbc02d; --black: #000; }
+    body { font-family: Arial, sans-serif; background: #555; padding: 20px; margin: 0; }
+    .paper { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-top: 15px solid var(--red); border-bottom: 15px solid var(--black); }
+    header { text-align: center; border-bottom: 3px solid var(--yellow); padding-bottom: 20px; margin-bottom: 20px; }
+    h1 { color: var(--red); font-size: 1.5rem; margin: 0; font-weight: 900; }
+    h2 { font-size: 1rem; margin: 5px 0; }
+    .sect { background: #eee; padding: 8px; color: var(--red); font-weight: bold; margin: 20px 0 10px 0; border-left: 5px solid var(--yellow); }
+    .row { display: flex; gap: 15px; margin-bottom: 10px; }
+    .col { flex: 1; }
+    label { display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #999; border-radius: 3px; box-sizing: border-box; }
+    .sig-box { border: 2px dashed var(--red); background: #fff; height: 200px; position: relative; }
+    canvas { width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+    .btn-submit { background: var(--red); color: white; width: 100%; padding: 20px; font-size: 1.5rem; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; }
+    @media (max-width: 600px) { .row { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+<div class="paper">
+    <header>
+        <h1>FRENTE REVOLUCIONÁRIA DO TIMOR-LESTE INDEPENDENTE</h1>
+        <h2>SECRETARIADO COMISSÃO DIRECTIVA REGIONAL FRETILIN IRLANDA DO NORTE</h2>
+        <h3>FORMULÁRIO PEDIDO DE ADMISSÃO</h3>
+    </header>
+
+    <form name="fretilin-membership" method="POST" data-netlify="true" enctype="multipart/form-data" id="membershipForm">
+        
+        <label>Data / Date</label><input type="date" name="date" required>
+
+        <div class="sect">IDENTIDADE MILITANTE / IDENTITY</div>
+        <label>Nome Completo / Full Name</label><input type="text" name="name" required>
+        
+        <div class="row">
+            <div class="col"><label>Data Nascimento / DOB</label><input type="date" name="dob" required></div>
+            <div class="col"><label>Local Nascimento / Place of Birth</label><input type="text" name="pob" required></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><label>Nº Eleitoral</label><input type="text" name="electoral"></div>
+            <div class="col"><label>Sexo / Gender</label><select name="gender"><option value="M">Masculino</option><option value="F">Feminino</option></select></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><label>Estado Civil</label><select name="marital"><option>Solteiro</option><option>Casado</option><option>Divorciado</option><option>Viuvo</option></select></div>
+            <div class="col"><label>Habilitação / High School</label><input type="text" name="school"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><label>Telemóvel / Phone</label><input type="tel" name="phone" required></div>
+            <div class="col"><label>Email</label><input type="email" name="email" required></div>
+        </div>
+
+        <div class="sect">PAIS / PARENTS</div>
+        <label>Nome do Pai / Father</label><input type="text" name="father" required>
+        <label>Nome da Mãe / Mother</label><input type="text" name="mother" required>
+
+        <div class="sect">RESIDÊNCIA / RESIDENCE</div>
+        <label>País / Country</label><input type="text" value="Irlanda Do Norte" readonly style="background:#eee;">
+        
+        <div class="row">
+            <div class="col">
+                <label>Condado / County</label>
+                <select name="county" required>
+                    <option value="">Select...</option>
+                    <option>ANTRIM</option><option>ARMAGH</option><option>DOWN</option><option>FERMANAGH</option><option>LONDONDERRY</option><option>TYRONE</option>
+                </select>
+            </div>
+            <div class="col">
+                <label>Cidade / City</label>
+                <select name="city" required>
+                    <option value="">Select...</option>
+                    <optgroup label="ANTRIM AREA"><option>ANTRIM</option><option>BALLYCASTLE</option><option>BALLYMENA</option><option>BELFAST</option><option>LISBURN</option></optgroup>
+                    <optgroup label="ARMAGH AREA"><option>ARMAGH</option><option>CRAIGAVON</option><option>LURGAN</option><option>NEWRY</option><option>PORTADOWN</option></optgroup>
+                    <optgroup label="DOWN AREA"><option>BANGOR</option><option>DOWNPATRICK</option><option>NEWRY</option></optgroup>
+                    <optgroup label="LONDONDERRY AREA"><option>COLERAINE</option><option>LONDONDERRY</option></optgroup>
+                    <optgroup label="TYRONE AREA"><option>COOKSTOWN</option><option>DUNGANNON</option><option>MOY</option><option>OMAGH</option><option>STRABANE</option></optgroup>
+                </select>
+            </div>
+        </div>
+
+        <label>Endereço / Address</label><input type="text" name="address" required>
+        <label>Código Postal / Post Code</label><input type="text" name="postcode" required>
+
+        <div class="sect">FOTOGRAFIA E ASSINATURA</div>
+        <label>Fotografia / Photo (3x4)</label>
+        <input type="file" name="photo" accept="image/*" required style="background:#f9f9f9; padding:10px; width:100%;">
+
+        <br><br>
+        <label style="color:var(--red); font-size:1.2rem;">ASSINATURA / SIGNATURE (Draw Below)</label>
+        <div class="sig-box">
+            <canvas id="signature-pad"></canvas>
+        </div>
+        <button type="button" id="clear-sig" style="margin-top:5px;">Limpar / Clear</button>
+        <input type="hidden" name="signature_data" id="signature_data">
+
+        <button type="submit" class="btn-submit">ENVIAR / SUBMIT</button>
+    </form>
+</div>
+
+<script>
+    var canvas = document.getElementById('signature-pad');
+    function resizeCanvas() {
+        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext("2d").scale(ratio, ratio);
+    }
+    window.onresize = resizeCanvas;
+    resizeCanvas();
+    var signaturePad = new SignaturePad(canvas, { backgroundColor: 'rgb(255, 255, 255)' });
+    document.getElementById('clear-sig').addEventListener('click', function () { signaturePad.clear(); });
+    document.getElementById('membershipForm').addEventListener('submit', function(e) {
+        if (signaturePad.isEmpty()) {
+            e.preventDefault();
+            alert("Please sign the form.");
+        } else {
+            document.getElementById('signature_data').value = signaturePad.toDataURL();
+        }
+    });
+</script>
+</body>
+</html>
